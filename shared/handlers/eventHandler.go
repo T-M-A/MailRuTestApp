@@ -10,7 +10,7 @@ type eventHttpHandler struct {
 }
 
 func (h *eventHttpHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	var result map[string]string
+	result := make(map[string]string)
 	result["status"] = "success"
 
 	js, err := json.Marshal(result)

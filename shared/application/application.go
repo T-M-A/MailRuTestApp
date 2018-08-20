@@ -40,7 +40,6 @@ func (a *application) MongoDb() (*mgo.Database, error) {
 	if a.mongoConnect != nil {
 		return a.mongoConnect, nil
 	}
-
 	mongoConnect, err := db.NewMongoDriver(a.conf.Mongodb.Host, a.conf.Mongodb.Port, a.conf.Mongodb.Login, a.conf.Mongodb.Password, a.conf.Mongodb.Database)
 	if err != nil {
 		return nil, err
@@ -52,7 +51,7 @@ func (a *application) MongoDb() (*mgo.Database, error) {
 func NewApplication(configPath string, logger log.Logger) (*application, error) {
 	content, err := ioutil.ReadFile(configPath)
 	if err != nil {
-		//Do something
+		return nil, err
 	}
 
 	var conf config

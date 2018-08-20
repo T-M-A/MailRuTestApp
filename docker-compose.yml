@@ -1,0 +1,24 @@
+version: "2"
+
+services:
+  mongo:
+    image: mongo
+    ports:
+        - "27017:27017"
+    logging:
+        driver: none
+  web:
+    image: golang
+    working_dir: /go/src/github.com/ruelephant/MailRuTestApp
+    command: >
+               bash -c "
+               cd cmd/main
+               && go build -o ../../bin/main .
+               && cd ../../bin
+               && ./main"
+    ports:
+        - "8080:8080"
+    links:
+        - mongo
+    volumes:
+        - .:/go/src/github.com/ruelephant/MailRuTestApp
