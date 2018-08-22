@@ -2,10 +2,48 @@
 
 
 [[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "8991bc29aa16c548c550c7ff78260e27b9ab7c73"
+  version = "v1.1.1"
+
+[[projects]]
   name = "github.com/julienschmidt/httprouter"
   packages = ["."]
   revision = "8c199fb6259ffc1af525cc3ad52ee60ba8359669"
   version = "v1.1"
+
+[[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
+
+[[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/stretchr/testify"
+  packages = [
+    "assert",
+    "require"
+  ]
+  revision = "f35b8ab0b5a2cef36673838d662e249dd9c94686"
+  version = "v1.2.2"
+
+[[projects]]
+  name = "github.com/ulule/limiter"
+  packages = [
+    ".",
+    "drivers/middleware/stdlib",
+    "drivers/store/common",
+    "drivers/store/memory"
+  ]
+  revision = "f0ff82677fc4826ddae9ac45f2e11462fa245dad"
+  version = "v2.2.0"
 
 [[projects]]
   branch = "v2"
@@ -28,6 +66,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "bdbfd0fa10d8bd1fb20c22170da117e761d979bd05aa06ef4d74c0ebff30496e"
+  inputs-digest = "6e5d3819f856b565df95d5eb0553d69ec6ad17f95799e2b71840f7bbce21ae80"
   solver-name = "gps-cdcl"
   solver-version = 1

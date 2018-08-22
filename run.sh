@@ -1,2 +1,2 @@
-dep ensure -vendor-only
-docker-compose up -d
+docker-compose down
+docker build -t webapp . && docker-compose up -d

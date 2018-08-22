@@ -1,31 +1,38 @@
 package handlers
 
 import (
-	"encoding/json"
 	"net/http"
 )
 
 type eventHttpHandler struct {
-	DAO EventDao
+	dao EventDao
+	response ResponseInterface
 }
 
 func (h *eventHttpHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	result := make(map[string]string)
-	result["status"] = "success"
-
-	js, err := json.Marshal(result)
-
+	err := r.ParseForm()
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		h.response.Error(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(js)
+	eventType := r.Form.Get("type")
+	switch eventType {
+		case "A", "B", "С":
+			if err != nil {
+				h.response.Error(w, http.StatusInternalServerError, err.Error())
+				return
+			}
+			h.dao.AddEvent(eventType)
+			h.response.Success(w, nil)
+		default:
+			h.response.Error(w, http.StatusBadRequest, "Invalid type")
+			return
+	}
 }
 
-func NewEventHandler(dao EventDao) http.Handler {
+func NewEventHandler(dao EventDao, responce ResponseInterface) *eventHttpHandler {
 	return &eventHttpHandler{
-		DAO: dao,
+		dao: dao,
+		response: responce,
 	}
 }
